@@ -11,7 +11,7 @@ import django
 from django import forms
 from django.contrib import admin
 from django.db import models
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 from django.contrib.admin.templatetags.admin_static import static
 from django.conf import settings
 
@@ -104,12 +104,6 @@ class DateRangeForm(DateRangeFilterBaseForm):
         )
 
     # Django 1.4 can't handle media inheritance well. We have to do it manually.
-    if django.VERSION < (1, 5):
-        @property
-        def media(self):
-            return super(DateRangeForm, self).media
-
-
 class DateTimeRangeForm(DateRangeFilterBaseForm):
 
     def __init__(self, *args, **kwargs):
@@ -135,12 +129,6 @@ class DateTimeRangeForm(DateRangeFilterBaseForm):
         )
 
     # Django 1.4 can't handle media inheritance well. We have to do it manually.
-    if django.VERSION < (1, 5):
-        @property
-        def media(self):
-            return super(DateTimeRangeForm, self).media
-
-
 class DateRangeFilter(admin.filters.FieldListFilter):
     template = 'daterange_filter/filter.html'
 
